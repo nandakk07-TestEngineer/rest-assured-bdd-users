@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Get single User Response Schema",
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": ["id", "email", "name", "job", "age"],
+      "properties": {
+        "id":         { "type": "integer", "minimum": 1 },
+        "email":      { "type": "string",  "format": "email" },
+        "name": 	  { "type": "string",  "minLength": 1 },
+        "job":        { "type": "string",  "minLength": 1 },
+        "age":        { "type": "integer",  "minLength": 1 }
+
+      },
+      "additionalProperties": false
+    },
+    "support": {
+      "type": "object",
+      "properties": {
+        "url":  { "type": "string" },
+        "text": { "type": "string" }
+      }
+    }
+  }
+}

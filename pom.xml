@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>com.automation</groupId>
+<artifactId>rest-assured-bdd-framework</artifactId>
+<version>1.0.0</version>
+<packaging>jar</packaging>
+<name>REST Assured BDD Framework</name>
+<properties>
+<maven.compiler.source>11</maven.compiler.source>
+<maven.compiler.target>11</maven.compiler.target>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<!--  Dependency Versions  -->
+<rest-assured.version>5.3.2</rest-assured.version>
+<cucumber.version>7.14.0</cucumber.version>
+<testng.version>7.8.0</testng.version>
+<jackson.version>2.15.3</jackson.version>
+<lombok.version>1.18.30</lombok.version>
+<allure.version>2.24.0</allure.version>
+<log4j.version>2.21.1</log4j.version>
+<json-schema-validator.version>5.3.2</json-schema-validator.version>
+<assertj.version>3.24.2</assertj.version>
+<owner.version>1.0.12</owner.version>
+<faker.version>1.0.2</faker.version>
+</properties>
+<dependencies>
+<!--  ===== REST ASSURED =====  -->
+<dependency>
+<groupId>io.rest-assured</groupId>
+<artifactId>rest-assured</artifactId>
+<version>${rest-assured.version}</version>
+</dependency>
+<dependency>
+<groupId>io.rest-assured</groupId>
+<artifactId>json-path</artifactId>
+<version>${rest-assured.version}</version>
+</dependency>
+<dependency>
+<groupId>io.rest-assured</groupId>
+<artifactId>json-schema-validator</artifactId>
+<version>${json-schema-validator.version}</version>
+</dependency>
+<!--  ===== CUCUMBER BDD =====  -->
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-java</artifactId>
+<version>${cucumber.version}</version>
+</dependency>
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-testng</artifactId>
+<version>${cucumber.version}</version>
+</dependency>
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-picocontainer</artifactId>
+<version>${cucumber.version}</version>
+</dependency>
+<!--  ===== TESTNG =====  -->
+<dependency>
+<groupId>org.testng</groupId>
+<artifactId>testng</artifactId>
+<version>${testng.version}</version>
+</dependency>
+<!--  ===== JACKSON (Serialization/Deserialization) =====  -->
+<dependency>
+<groupId>com.fasterxml.jackson.core</groupId>
+<artifactId>jackson-databind</artifactId>
+<version>${jackson.version}</version>
+</dependency>
+<dependency>
+<groupId>com.fasterxml.jackson.core</groupId>
+<artifactId>jackson-annotations</artifactId>
+<version>${jackson.version}</version>
+</dependency>
+<!--  ===== LOMBOK =====  -->
+<dependency>
+<groupId>org.projectlombok</groupId>
+<artifactId>lombok</artifactId>
+<version>${lombok.version}</version>
+<scope>provided</scope>
+</dependency>
+<!--  ===== ALLURE REPORTING =====  -->
+<dependency>
+<groupId>io.qameta.allure</groupId>
+<artifactId>allure-cucumber7-jvm</artifactId>
+<version>${allure.version}</version>
+</dependency>
+<dependency>
+<groupId>io.qameta.allure</groupId>
+<artifactId>allure-rest-assured</artifactId>
+<version>${allure.version}</version>
+</dependency>
+<!--  ===== LOGGING =====  -->
+<dependency>
+<groupId>org.apache.logging.log4j</groupId>
+<artifactId>log4j-core</artifactId>
+<version>${log4j.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.logging.log4j</groupId>
+<artifactId>log4j-api</artifactId>
+<version>${log4j.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.logging.log4j</groupId>
+<artifactId>log4j-slf4j-impl</artifactId>
+<version>${log4j.version}</version>
+</dependency>
+<!--  ===== ASSERTJ (Fluent Assertions) =====  -->
+<dependency>
+<groupId>org.assertj</groupId>
+<artifactId>assertj-core</artifactId>
+<version>${assertj.version}</version>
+</dependency>
+<!--  ===== OWNER (Config Management) =====  -->
+<dependency>
+<groupId>org.aeonbits.owner</groupId>
+<artifactId>owner</artifactId>
+<version>${owner.version}</version>
+</dependency>
+<!--  ===== JAVA FAKER (Test Data) =====  -->
+<dependency>
+<groupId>com.github.javafaker</groupId>
+<artifactId>javafaker</artifactId>
+<version>${faker.version}</version>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+<!--  Maven Surefire Plugin  -->
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>3.2.2</version>
+<configuration>
+<suiteXmlFiles>
+<suiteXmlFile>testng.xml</suiteXmlFile>
+</suiteXmlFiles>
+<systemPropertyVariables>
+<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+</systemPropertyVariables>
+</configuration>
+</plugin>
+<!--  Allure Maven Plugin  -->
+<plugin>
+<groupId>io.qameta.allure</groupId>
+<artifactId>allure-maven</artifactId>
+<version>2.12.0</version>
+<configuration>
+<reportVersion>${allure.version}</reportVersion>
+</configuration>
+</plugin>
+</plugins>
+</build>
+</project>
